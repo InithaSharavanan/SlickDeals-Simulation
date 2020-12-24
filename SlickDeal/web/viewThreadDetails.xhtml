@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/frontpageStyling.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Deal Thread Details</title>
+        <style type="text/css">
+            .col-xs-updated {        
+                width: 92% !important;
+            }
+            .button{
+                padding:10px;
+            }
+            body{
+                background-color: #F6F1F1;
+            }
+            .datatable {   
+                align:center;
+                background-color: white;
+
+            }
+
+            .tableHeader {
+                text-align:center;
+                background:none repeat scroll 0 0 black;
+                border-bottom:1px solid #000000;  
+                color:white;  
+                font-size: 20px;
+                padding:2px;
+            }
+
+            .tableOddRow {
+                text-align:center;
+                background:none repeat scroll 0 0 #D3D3D3;	
+            }
+
+            .tableEvenRow {
+                text-align:center;
+                background:none repeat scroll 0 0 #FFFFFF;
+            }
+            .notification {
+                background-color: #555;
+                color: white;
+                text-decoration: none;
+                padding: 15px 26px;
+                position: relative;
+                display: inline-block;
+                border-radius: 2px;
+            }
+
+            .notification:hover {
+                background: red;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                padding: 5px 6px;
+                border-radius: 50%;
+                background: red;
+                color: white;
+            }
+
+        </style>
+
+    </h:head>
+    <h:body>
+        <header>
+            <nav class="navbar navbar-inverse">  
+                <div class="container-fluid">  
+                    <div class=" navbar-center">  
+                        <a class="navbar-brand" href="index.xhtml" style="color:white;font-size:30px;padding:20px;text-align:center"><span><h:graphicImage width="30" height="25" value="images/slickdealsicon.png"/></span> &nbsp;SlickDeals</a>  
+                    </div>  
+                    <ul class="nav navbar-nav navbar-right">  
+                        <li><a href="frontPageDeal.xhtml"> Deals</a></li>  
+                        <li><a href="forum.xhtml">Forum</a></li>  
+                        <li><a href="dealAlerts.xhtml">Deal Alerts</a></li> 
+                        <li><a href="postADeal.xhtml">Post A Deal</a></li> 
+                        <li><a href="store.xhtml">Store</a></li> 
+                        <li  class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                #{login.id}
+                            </a>
+                            <ul class="dropdown-menu" style="background-color: ivory">
+                                <li><a href="">Profile</a></li>
+                                <li><a href="">My Deal Alerts</a></li>
+                                <li><a href="">Saved Items</a></li>
+                                <li><a href="">Notifications</a></li>
+                                <li><a href="">Settings</a></li>
+                                <li><a href="signOut.xhtml">LogOut</a></li>
+                            </ul>
+                        </li> 
+                        <li><a href="email.xhtml" class="notification"><i class="fa fa-envelope" style="font-size:24px;color:silver"></i><span class="badge">#{login.thefrontPageDeals.totCount}</span></a></li> 
+                    </ul>   
+                </div>
+
+            </nav>
+        </header>
+        <h:form>
+            
+           
+
+            <div class="container" style="background-color:white ;margin:40px">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 style="font-size: 20px;padding:0px;margin:40px 0px 0px 40px;;font-size: 30px"> #{login.thefrontPageDeals.selectedThreadtoView}</h2>
+                        <br></br>
+                        <h:dataTable
+                            rows ="#{login.thefrontPageDeals.displayThreadDetails().size()}" 
+                            value="#{login.thefrontPageDeals.displayThreadDetails()}" var="str">  
+                            <h:column > 
+                                <p style="margin-left:40px;font-size: 20px"> <b>$<h:outputText styleClass="dataTableOutputText" id="strPrice" value="#{str.price}"/></b></p>
+                                <hr></hr>
+                                <p style="margin-left:40px;"><h:commandLink style="color:black;"  action="#"><h:outputText styleClass="dataTableOutputText" id="strRating" value="#{str.rating}"/>
+                                        Deal Score </h:commandLink>
+                                    <span style="margin:30px;color:black">
+                                        <h:outputText styleClass="dataTableOutputText" id="strView" value="#{str.view}"/>
+                                        Views
+
+                                    </span>
+                                    <span style="margin:30px;">
+
+                                        <h:commandLink style="color:black;"  action="#"><h:outputText styleClass="dataTableOutputText" id="strReplies" value="#{login.thefrontPageDeals.replyCount}"/>
+                                            Replies </h:commandLink>
+                                    </span>
+                                </p>
+                                <hr></hr>
+                                <p style="margin:30px"> <h:outputText styleClass="dataTableOutputText" id="strContent" value="#{str.content}"/>
+                                    <span>
+                                        <b>$<h:outputText styleClass="dataTableOutputText" id="strPrice1" value="#{str.price}"/></b>
+                                    </span></p>
+
+                                <a style="margin: 10px;background-color: blue;color:white;text-decoration: none;border-radius: 5px;padding:15px" href="reply.xhtml" styleClass="btn btn-default" > Reply</a>
+                                <hr></hr>
+                                <p> created <h:outputText styleClass="dataTableOutputText" id="strDate" value="#{str.dateAndTime}"/> by <h:outputText styleClass="dataTableOutputText" id="strAuthor" value="#{str.author}"/></p> 
+                                <hr></hr>
+                                <p style="font-size: 12px">&#9432; <i>If you purchase something through a post on our site, Initha may get a small share of the sale.</i></p>
+                            </h:column> 
+                        </h:dataTable>
+                    </div>
+                    <div class="col-sm-6">
+                    
+                        <img src="#{login.thefrontPageDeals.image}" width="300" style="padding-top:50px"/>
+                        <p style="text-align: right"> <h:commandButton style="margin: 20px;background-color: green;color:white;" id="SeeDeal" value="See Deal"  styleClass="btn btn-default" /></p>
+                        <hr></hr>
+                        <a href="#"><i class="fa fa-twitter" style="font-size:30px;color:blue;padding-right:15px;padding-left:40px"></i></a>
+                        <a href="#"><i class="fa fa-facebook" style="font-size:30px;color:blue;padding-right:15px"></i></a>
+                        <a href="#"><i class="fa fa-google-plus" style="font-size:30px;color:blue;padding-right:15px"></i></a>
+
+                        <hr></hr>
+
+                    </div>
+                </div>                      
+            </div>
+
+
+            <div class="container" style="background-color:white;margin:40px">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <br></br>
+                        <h:dataTable
+                            rows ="#{login.thefrontPageDeals.displayThreadDetails().size()}" 
+                            value="#{login.thefrontPageDeals.displayThreadDetails()}" var="str">  
+                            <h:column > 
+                                <p>
+                                    <h:commandLink  style="font-size:20px;color:grey;margin: 40px 0px 20px 0px;padding:17px;border-radius: 5px;text-align: center;background-color: lightgreen;text-decoration: none" action="#">Deal Score: <h:outputText styleClass="dataTableOutputText" id="strRating" value="#{str.rating}" style="color:black"/></h:commandLink>
+                                    <c:if test="${login.thefrontPageDeals.rankingType=='like'}">
+                                        <h:commandLink  style="font-size:33px;margin: 35px 0px 0px 5px;text-align: center;background-color: lavender;color:green;text-decoration: none;border-top-left-radius: 5px;border-bottom-left-radius: 5px"  onclick="this.style.color='green'" action="#{login.thefrontPageDeals.incrementRating()}"> <i class="fa fa-thumbs-up" ></i></h:commandLink>                                  
+                                        <h:commandLink  style="font-size:33px;margin: 35px 0px 0px 0px;padding-right: 5px;text-align: center;background-color: lavender;color:lightgray;text-decoration: none;border-top-right-radius: 5px;border-bottom-right-radius: 5px"  onclick="this.style.color='red'" action="#{login.thefrontPageDeals.decrementRating()}">  <i class="fa fa-thumbs-down" ></i></h:commandLink>                                 
+                                    </c:if>
+                                    
+                                    <c:if test="${login.thefrontPageDeals.rankingType=='dislike'}">
+                                        <h:commandLink  style="font-size:33px;margin: 35px 0px 0px 5px;text-align: center;background-color: lavender;color:lightgray;text-decoration: none;border-top-left-radius: 5px;border-bottom-left-radius: 5px"  onclick="this.style.color='green'" action="#{login.thefrontPageDeals.incrementRating( )}"> <i class="fa fa-thumbs-up" ></i></h:commandLink>                                  
+                                        <h:commandLink  style="font-size:33px;margin: 35px 0px 0px 0px;padding-right: 5px;text-align: center;background-color: lavender;color:red;text-decoration: none;border-top-right-radius: 5px;border-bottom-right-radius: 5px"  onclick="this.style.color='red'" action="#{login.thefrontPageDeals.decrementRating()}">  <i class="fa fa-thumbs-down" ></i></h:commandLink>                                 
+                                    </c:if>
+                                    <c:if test="${login.thefrontPageDeals.rankingType==''}">
+                                        <h:commandLink  style="font-size:33px;margin: 35px 0px 0px 5px;text-align: center;background-color: lavender;color:lightgray;text-decoration: none;border-top-left-radius: 5px;border-bottom-left-radius: 5px"  onclick="this.style.color='green'" action="#{login.thefrontPageDeals.incrementRating( )}"> <i class="fa fa-thumbs-up" ></i></h:commandLink>                                  
+                                        <h:commandLink  style="font-size:33px;margin: 35px 0px 0px 0px;padding-right: 5px;text-align: center;background-color: lavender;color:lightgray;text-decoration: none;border-top-right-radius: 5px;border-bottom-right-radius: 5px"  onclick="this.style.color='red'" action="#{login.thefrontPageDeals.decrementRating()}">  <i class="fa fa-thumbs-down" ></i></h:commandLink>                                 
+                                    </c:if>
+                                    
+                                </p>
+                            </h:column>
+                            <h:column>
+                                &nbsp;&nbsp;<h:outputText styleClass="dataTableOutputText" id="strViews1" value="#{str.view}" /> <span style="font-size: 12px"> Views </span>
+                                &nbsp;&nbsp;<h:outputText styleClass="dataTableOutputText" id="strReplies1" value="#{login.thefrontPageDeals.replyCount}" /> <span style="font-size: 12px"> Replies </span>
+                            </h:column>
+                        </h:dataTable>
+
+                    </div>
+                    <div class='col-sm-2'>
+                        <h:commandButton style="margin: 30px 20px 20px 0px;background-color: green;color:white;float:right" id="SeeDeal1" value="See Deal"  styleClass="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="background-color:white;margin:40px">
+                <div class="row">
+                    <div class="col-sm-6">                         
+                        <p style="color:blue;font-size: 25px;"><h:outputText styleClass="dataTableOutputText" id="strReplies1" value="#{login.thefrontPageDeals.replyCount}" /> <span style="font-size: 25px"> Replies </span></p>
+                        <hr width="1000"></hr>
+                        <h:dataTable
+                            rows ="#{login.thefrontPageDeals.displayThreadReplies().size()}" 
+                            value="#{login.thefrontPageDeals.displayThreadReplies()}" var="str"> 
+
+                            <hr></hr>
+
+                            <h:column >
+                                <p><img src="images/profile.png" width="50" height="50"/><h:outputText styleClass="dataTableOutputText" id="strReplyUser1" value="#{str.userId}" /></p>
+                                <hr width="1000"></hr>
+                            </h:column>
+
+                        </h:dataTable>
+
+                    </div>
+
+                    <div class="col-sm-6" style="padding:35px">
+                        <hr></hr>
+                        <h:dataTable style="padding:60px"
+                                     rows ="#{login.thefrontPageDeals.displayThreadReplies().size()}" 
+                                     value="#{login.thefrontPageDeals.displayThreadReplies()}" var="str"> 
+                            <h:column>
+                                <p> <h:outputText styleClass="dataTableOutputText" id="strDate" value="#{str.dateTime}" /></p>
+                                <p><h:outputText styleClass="dataTableOutputText" id="strReplyUser" value="#{str.reply}" /></p>
+                                <hr width="1000"></hr>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
+            </div>
+
+            <br></br>
+            <br></br>
+
+
+        </h:form> 
+        <footer> 
+            <nav class="navbar navbar-inverse">  
+                <div class="container-fluid">   
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px">  
+                                <li>Follow US</li>  &nbsp;
+                                <li>Twitter</li>  
+                                <li>Facebook</li>  
+                                <li>Instagram</li>  
+                            </ul> 
+                        </div>
+                        <div class="col-xs-2">   
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px">  
+                                <li>About</li>  &nbsp;
+                                <li>About Us</li>  
+                                <li>FAQs</li>  
+                                <li>Advertising Opportunities</li>  
+                                <li>Careers</li>  
+                                <li>Contact Us</li>  
+                            </ul>   
+                        </div>
+                        <div class="col-xs-3">   
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px">  
+                                <li>More</li>  &nbsp;
+                                <li>Deal Alerts</li>  
+                                <li>Slickdeals Live</li>  
+                                <li>Cyber Monday Deals 2020</li>  
+                            </ul>   
+                        </div>
+                        <div class="col-xs-3">   
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px;">  
+                                <li>Legal</li>  &nbsp;
+                                <li>Privacy Policy</li>  
+                                <li>Other Terms and Policies</li>  
+                                <li>Interest - Based Ads</li>  
+                                <li>Do Not Sell My Personal Information</li>  
+                                <li>Website Accessibility</li>  
+                            </ul>   
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="#"><i class="fa fa-twitter" style="font-size:30px;color:white;padding-top:40px;padding-right:15px"></i></a>
+                            <a href="#"><i class="fa fa-facebook" style="font-size:30px;color:white;padding-top:40px;padding-right:15px"></i></a>
+                            <a href="#"><i class="fa fa-google-plus" style="font-size:30px;color:white;padding-top:40px;padding-right:15px"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </nav> 
+        </footer>
+
+
+    </h:body>
+</html>
