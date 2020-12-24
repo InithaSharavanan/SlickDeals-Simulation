@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/frontpageStyling.css" />
+        <title>Sign Up</title>
+        <style type="text/css">
+            .col-xs-updated {        
+                width: 92% !important;
+            }
+            .button{
+                padding:10px;
+            }
+            body{
+                background-color: #F6F1F1;
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <nav class="navbar navbar-inverse">  
+                <div class="container-fluid">  
+                    <div class=" navbar-center">  
+                        <a class="navbar-brand" href="index.xhtml" style="color:white;font-size:30px;padding:20px;text-align:center"><span><h:graphicImage width="30" height="25" value="images/slickdealsicon.png"/></span> &nbsp;SlickDeals</a>  
+                    </div>           
+                </div>
+            </nav>
+            <div class="container" style="background-color:ivory ;margin:40px;text-align:center">
+                <br></br><br></br><br></br><br></br>
+                <p style="color:black;text-align: center;font-size:25px"><b>Join Slick Deals</b></p><br></br>
+                <p style="color:black;text-align: center;font-size:20px"><b>Find and share great deals</b></p><br></br><br></br>
+                <div class="row">
+                    <div class="col-sm-6" style="text-align: center">
+                        <div class="form-group row" style="color:black;text-align: center">
+                            <label for="UserID" class="col-sm-4 col-form-label">User ID</label>
+                            <div class="col-sm-6" style="text-align: center">
+                                <h:inputText class="form-control" id="id" required ="true" 
+                                             requiredMessage="The User ID field cannot be empty"
+                                             title="Please enter your User ID"
+                                             value="#{signUp.id}"
+                                             validatorMessage="The User ID must be between 3 and 20 characters">
+                                    <f:validateLength maximum="20" minimum="3" />
+                                </h:inputText>
+                            </div>
+                        </div>
+                         <div class="form-group row" style="color:black;text-align: center">
+                            <label for="Name" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-6" style="text-align: center">
+                                <h:inputText class="form-control" id="name" required ="true" 
+                                             requiredMessage="The name field cannot be empty"
+                                             title="Please enter your name"
+                                             value="#{signUp.name}"/> 
+                            </div>
+                           
+                        </div>
+                        <div class="form-group row" style="color:black;text-align: center">
+                            <label for="Password" class="col-sm-4 col-form-label">Password</label>
+                            <div class="col-sm-6" style="text-align: center">
+                                <h:inputText class="form-control" id="password" required ="true" 
+                                             requiredMessage="The password field cannot be empty"
+                                             title="Please enter your password"
+                                             value="#{signUp.password}"/> 
+                            </div>
+                           
+                        </div>
+                        
+                        <p>
+                            <h:commandButton style="margin: 10px;background-color: blue;color:white" id="submit" value="signUp" action="#{signUp.signUp()}" styleClass="btn btn-default" />
+                           
+                        </p>
+                        <div class="col-sm-6" style="text-align: right">
+                             <p><h:message for="password" style="color:red"/></p>
+                             <p><h:message for="id" style="color:red"/></p>
+                             <p><h:message for="name" style="color:red"/></p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <br></br><br></br><br></br><br></br><br></br>
+           
+          
+          <div>  
+            <nav class="navbar navbar-inverse">  
+                <div class="container-fluid">   
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px">  
+                                <li>Follow US</li>  &nbsp;
+                                <li>Twitter</li>  
+                                <li>Facebook</li>  
+                                <li>Instagram</li>  
+                            </ul> 
+                        </div>
+                        <div class="col-xs-2">   
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px">  
+                                <li>About</li>  &nbsp;
+                                <li>About Us</li>  
+                                <li>FAQs</li>  
+                                <li>Advertising Opportunities</li>  
+                                <li>Careers</li>  
+                                <li>Contact Us</li>  
+                            </ul>   
+                        </div>
+                        <div class="col-xs-3">   
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px">  
+                                <li>More</li>  &nbsp;
+                                <li>Deal Alerts</li>  
+                                <li>Slickdeals Live</li>  
+                                <li>Cyber Monday Deals 2020</li>  
+                            </ul>   
+                        </div>
+                        <div class="col-xs-3">   
+                            <ul style="list-style-type:none; color:ivory;padding-top: 10px;">  
+                                <li>Legal</li>  &nbsp;
+                                <li>Privacy Policy</li>  
+                                <li>Other Terms and Policies</li>  
+                                <li>Interest - Based Ads</li>  
+                                <li>Do Not Sell My Personal Information</li>  
+                                <li>Website Accessibility</li>  
+                            </ul>   
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="#"><i class="fa fa-twitter" style="font-size:30px;color:white;padding-top:40px;padding-right:15px"></i></a>
+                            <a href="#"><i class="fa fa-facebook" style="font-size:30px;color:white;padding-top:40px;padding-right:15px"></i></a>
+                            <a href="#"><i class="fa fa-google-plus" style="font-size:30px;color:white;padding-top:40px;padding-right:15px"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </nav> 
+          </div>
+        </h:form>
+        
+    </h:body>
+</html>
